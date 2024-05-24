@@ -32,6 +32,7 @@ add_executable(bmi160_publisher src/bmi160_publisher.cpp)
 target_link_libraries(bmi160_publisher
   bmi160
   ${catkin_LIBRARIES}
+  ${EIGEN3_LIBRARIES}
 )
 
 add_executable(bmi160_calibration_node src/bmi160_calibration_node.cpp)

@@ -1,0 +1,7 @@
+publish_rate: 50.0
+accel_odr: 0x0C    # BMI160_ACCEL_ODR_1600HZ
+accel_range: 0x03  # BMI160_ACCEL_RANGE_2G
+accel_bw: 0x02     # BMI160_ACCEL_BW_NORMAL_AVG4
+gyro_odr: 0x0D     # BMI160_GYRO_ODR_3200HZ
+gyro_range: 0x00   # BMI160_GYRO_RANGE_2000_DPS
+gyro_bw: 0x02      # BMI160_GYRO_BW_NORMAL_MODE

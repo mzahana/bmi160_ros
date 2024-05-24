@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<launch>
+  <node name="bmi160_publisher" pkg="bmi160_ros" type="bmi160_publisher" output="screen">
+    <rosparam file="$(find bmi160_ros)/config/bmi160_params.yaml" command="load"/>
+  </node>
+</launch>
+

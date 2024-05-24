@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <launch>
+  <arg name="yaml_output_path" default="$(find bmi160_ros)/config/bmi160_calibration.yaml"/>
+  <arg name="bmi160_params" default="$(find bmi160_ros)/config/bmi160_params.yaml"/>
   <node name="bmi160_calibration_node" pkg="bmi160_ros" type="bmi160_calibration_node" output="screen">
     <param name="num_measurements" value="100"/>
-    <param name="yaml_output_path" value="/path/to/output.yaml"/>
-    <param name="accel_odr" value="0x0C"/>  <!-- Example ODR -->
-    <param name="accel_range" value="0x05"/>  <!-- Example range -->
-    <param name="accel_bw" value="0x02"/>  <!-- Example bandwidth -->
-    <param name="gyro_odr" value="0x0D"/>  <!-- Example ODR -->
-    <param name="gyro_range" value="0x00"/>  <!-- Example range -->
-    <param name="gyro_bw" value="0x02"/>  <!-- Example bandwidth -->
+    <param name="yaml_output_path" value="$(arg yaml_output_path)"/>
+    <rosparam file="$(arg bmi160_params)" command="load"/>
   </node>
 </launch>

@@ -79,9 +79,9 @@ private:
             imu_msg.linear_acceleration.y = convertRawAccelToMs2(acc_data.y, accel_range_);
             imu_msg.linear_acceleration.z = convertRawAccelToMs2(acc_data.z, accel_range_);
 
-            imu_msg.angular_velocity.x = gyro_data.x * 0.001064; // Convert to rad/s
-            imu_msg.angular_velocity.y = gyro_data.y * 0.001064; // Convert to rad/s
-            imu_msg.angular_velocity.z = gyro_data.z * 0.001064; // Convert to rad/s
+            imu_msg.angular_velocity.x = convertRawGyroToRads(gyro_data.x);
+            imu_msg.angular_velocity.y = convertRawGyroToRads(gyro_data.y);
+            imu_msg.angular_velocity.z = convertRawGyroToRads(gyro_data.z);
 
             imu_pub_.publish(imu_msg);
         } else {
@@ -111,6 +111,10 @@ private:
         }
         double multiplier = range_multiplier / std::pow(2.0, 16) * 9.81;
         return raw_data * multiplier;
+    }
+
+    double convertRawGyroToRads(int16_t raw_data) {
+        return raw_data * 0.0174533; // Convert dps to rad/s
     }
 };
 

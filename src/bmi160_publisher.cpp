@@ -17,7 +17,7 @@ public:
 
         printConfiguration();
 
-        imu_pub_ = nh.advertise<sensor_msgs::Imu>("imu/data", 10);
+        imu_pub_ = nh.advertise<sensor_msgs::Imu>("/imu/data_raw", 10);
 
         if (!initializeIMU()) {
             ROS_ERROR("Failed to initialize BMI160");

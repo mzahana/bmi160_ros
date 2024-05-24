@@ -6,6 +6,10 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
 )
 
+find_package(Eigen3 REQUIRED)
+find_package(cmake_modules REQUIRED)
+find_package(yaml-cpp REQUIRED)
+
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES bmi160_ros
@@ -15,6 +19,8 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
+  ${YAML_CPP_INCLUDE_DIR}
 )
 
 add_library(bmi160
@@ -26,4 +32,12 @@ add_executable(bmi160_publisher src/bmi160_publisher.cpp)
 target_link_libraries(bmi160_publisher
   bmi160
   ${catkin_LIBRARIES}
+)
+
+add_executable(bmi160_calibration_node src/bmi160_calibration_node.cpp)
+target_link_libraries(bmi160_calibration_node
+  bmi160
+  ${catkin_LIBRARIES}
+  yaml-cpp
+  ${EIGEN3_LIBRARIES}
 )

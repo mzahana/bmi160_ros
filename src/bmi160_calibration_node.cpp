@@ -218,7 +218,7 @@ private:
         for (int i = 0; i < num_measurements_; ++i) {
             bmi160_sensor_data acc_data;
             bmi160_get_sensor_data(BMI160_ACCEL_SEL, &acc_data, nullptr, &sensor_);
-            Eigen::Vector3d measured_acc(acc_data.x, acc_data.y, acc_data.z);
+            Eigen::Vector3d measured_acc(-1.0 * acc_data.x, -1.0 * acc_data.y, acc_data.z);
             measurements.push_back(measured_acc);
             ros::Duration(0.02).sleep(); // Adjust the delay as necessary
         }

@@ -3,7 +3,7 @@
 <launch>
   <arg name="yaml_output_path" default="$(find bmi160_ros)/config/bmi160_calibration.yaml"/>
   <arg name="bmi160_params" default="$(find bmi160_ros)/config/bmi160_params.yaml"/>
-  <node name="bmi160_calibration_node" pkg="bmi160_ros" type="bmi160_calibration_node" output="screen">
+  <node name="bmi160_calibration_node" pkg="bmi160_ros" type="bmi160_calibration_node" output="screen" required="true">
     <param name="num_measurements" value="100"/>
     <param name="yaml_output_path" value="$(arg yaml_output_path)"/>
     <rosparam file="$(arg bmi160_params)" command="load"/>

@@ -234,7 +234,7 @@ private:
         for (int i = 0; i < num_measurements_; ++i) {
             bmi160_sensor_data acc_data;
             bmi160_get_sensor_data(BMI160_ACCEL_SEL, &acc_data, nullptr, &sensor_);
-            Eigen::Vector3d measured_acc(convertRawAccelToG(acc_data.x, accel_range_), convertRawAccelToG(acc_data.y, accel_range_), convertRawAccelToG(acc_data.z, accel_range_));
+            Eigen::Vector3d measured_acc(convertRawAccelToG(-1.0 * acc_data.x, accel_range_), convertRawAccelToG(-1.0 * acc_data.y, accel_range_), convertRawAccelToG(acc_data.z, accel_range_));
             calibration_.addMeasurement(measured_acc, true_acc);
             ros::Duration(0.02).sleep(); // Adjust the delay as necessary
         }
@@ -244,7 +244,7 @@ private:
         for (int i = 0; i < num_measurements_; ++i) {
             bmi160_sensor_data gyro_data;
             bmi160_get_sensor_data(BMI160_GYRO_SEL, nullptr, &gyro_data, &sensor_);
-            Eigen::Vector3d measured_gyro(gyro_data.x, gyro_data.y, gyro_data.z);
+            Eigen::Vector3d measured_gyro(-1.0 * gyro_data.x, -1.0 * gyro_data.y, gyro_data.z);
             calibration_.addGyroMeasurement(measured_gyro);
             ros::Duration(0.02).sleep(); // Adjust the delay as necessary
         }

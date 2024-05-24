@@ -92,12 +92,12 @@ private:
 
             imu_msg.header.stamp = last_ros_time_;
             imu_msg.header.frame_id = imu_frame_id_;
-            imu_msg.linear_acceleration.x = convertRawAccelToMs2(acc_data.x, accel_range_);
-            imu_msg.linear_acceleration.y = convertRawAccelToMs2(acc_data.y, accel_range_);
+            imu_msg.linear_acceleration.x = -1.0 * convertRawAccelToMs2(acc_data.x, accel_range_); // -1 because readings are inverted!
+            imu_msg.linear_acceleration.y = -1.0 * convertRawAccelToMs2(acc_data.y, accel_range_);
             imu_msg.linear_acceleration.z = convertRawAccelToMs2(acc_data.z, accel_range_);
 
-            imu_msg.angular_velocity.x = convertRawGyroToRads(gyro_data.x);
-            imu_msg.angular_velocity.y = convertRawGyroToRads(gyro_data.y);
+            imu_msg.angular_velocity.x = convertRawGyroToRads(-1.0 * gyro_data.x);
+            imu_msg.angular_velocity.y = convertRawGyroToRads(-1.0 * gyro_data.y);
             imu_msg.angular_velocity.z = convertRawGyroToRads(gyro_data.z);
 
             imu_pub_.publish(imu_msg);
